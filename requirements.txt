@@ -1,0 +1,5 @@
+fastapi==0.77.1
+cryptography==37.0.2
+requests==2.27.1
+sqlalchemy==1.4.36
+pymysql==1.0.2
