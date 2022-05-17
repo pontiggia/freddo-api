@@ -7,12 +7,15 @@ from starlette.status import HTTP_204_NO_CONTENT
 from ..config.database import conn
 from ..models.user import users
 from ..schemas.user import Customer
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 customer = APIRouter()
 
 load_dotenv()
 TEST_API_TOKEN = os.environ.get("TEST_API_TOKEN")
 mId = os.environ.get("MERCHANT_ID")
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API")
 global filtered_data 
 filtered_data = []
 
@@ -60,5 +63,21 @@ def create_customer(): # Insert a new customer data into database
         else:
             continue
         
-        
+
+# send email to customer using sendgrid api
+@customer.post("/send-email", description="Send email to customer")
+def send_email(email: str):
+    message = Mail(
+    from_email='pontidev@pontimposrl.com',
+    to_emails=email,
+    subject='Freddo Midtown Miami',
+    html_content='<strong>Hola Pablo, le avisamos que Freddo Midtown Miami tiene ofertas el dia de hoy!</strong>')
+    try:
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e.message)
         
