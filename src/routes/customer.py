@@ -71,7 +71,7 @@ def send_email(email: str):
     from_email='pontidev@pontimposrl.com',
     to_emails=email,
     subject='Freddo Midtown Miami',
-    html_content='<strong>Hola Pablo, le avisamos que Freddo Midtown Miami tiene ofertas el dia de hoy!</strong>')
+    html_content=f'<strong>Hola {email[:6]}, le avisamos que Freddo Midtown Miami tiene ofertas el dia de hoy!</strong>')
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
         response = sg.send(message)
