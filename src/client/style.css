@@ -167,6 +167,14 @@ a {
   margin-top: 25px;
 }
 
+.green__span {
+  color: #1d7e05;
+}
+
+.red__span {
+  color: #ff0000;
+}
+
 /* Mail section */
 
 .mail__section {
