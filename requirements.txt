@@ -1,5 +1,5 @@
 fastapi==0.77.1
-cryptography==38.0.3
+cryptography==39.0.1
 requests==2.27.1
 sqlalchemy==1.4.36
 pymysql==1.0.2
